@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"></script>
+    <title>FX Chain</title>
+</head>
+
+<body>
+    <h1>FX Chain</h1>
+    <h4>Click to allow audio.</h4>
+    <p>This app works better with headphones.</p>
+    <div class="app-container">
+        <div class="voice-changer-container">
+            <div class="mic-indication" id="mic-indication"></div>
+            <div class="button-container" id="button-container">
+                <button class="voice-start-toggle" id="voice-start-toggle">START</button>
+            </div>
+        </div>
+
+        <div class="effect-container" id="effect-container">
+
+            <div class="fx-section" id="pitch-container">
+                <h3>Pitch</h3>
+                <p class="fx-description">Frequency</p>
+                <span id="pitch-level-value"></span>
+                <input class="pitch-level slider" id="pitch-level" type="range" min="0" max="44100" value="440"
+                    step="1">
+            </div>
+
+            <div class="fx-section" id="distortion-container">
+                <h3>Distortion</h3>
+                <p class="fx-description">Distortion</p>
+                <span id="distortion-level-value"></span>
+                <input class="distortion-level slider" id="distortion-level" type="range" min="0" max="1"
+                    value="0.8" step="0.01">
+                <p class="fx-description">Bit Crusher</p>
+                <span id="bitcrusher-level-value"></span>
+                <input class="bitcrusher-level slider" id="bitcrusher-level" type="range" min="0" max="8"
+                    value="4" step="0.01">
+            </div>
+
+            <div class="fx-section" id="chorus-container">
+                <h3>Chorus</h3>
+                <p class="fx-description">Frequency</p>
+                <span id="chorus-frequency-value"></span>
+                <input class="chorus-frequency slider" id="chorus-frequency" type="range" min="0" max="500" value="8"
+                    step="1">
+                <p class="fx-description">Delay</p>
+                <span id="chorus-delay-value"></span>
+                <input class="chorus-delay slider" id="chorus-delay" type="range" min="0" max="50" value="3.5"
+                    step="0.5">
+                <p class="fx-description">Depth</p>
+                <span id="chorus-depth-value"></span>
+                <input class="chorus-depth slider" id="chorus-depth" type="range" min="0" max="1" value="0.5"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="tremolo-container">
+                <h3>Tremolo</h3>
+                <p class="fx-description">Frequency</p>
+                <span id="tremolo-frequency-value"></span>
+                <input class="tremolo-frequency slider" id="tremolo-frequency" type="range" min="0" max="300" value="9"
+                    step="1">
+                <p class="fx-description">Depth</p>
+                <span id="tremolo-depth-value"></span>
+                <input class="tremolo-depth slider" id="tremolo-depth" type="range" min="0" max="1" value="0.75"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="delay-container">
+                <h3>Delay</h3>
+                <!-- todo add in time values in notation -->
+                <p class="fx-description">Time</p>
+                <span id="delay-time-value"></span>
+                <input class="delay-time slider" id="delay-time" type="range" min="0" max="1" value=""
+                    step="0.01">
+                <p class="fx-description">Feedback</p>
+                <span id="delay-feedback-value"></span>
+                <input class="delay-feedback slider" id="delay-feedback" type="range" min="0" max="1" value="0.8"
+                    step="0.1">
+            </div>
+
+            <div class="fx-section" id="reverb-container">
+                <h3>Reverb</h3>
+                <p class="fx-description">Size</p>
+                <span id="reverb-size-value"></span>
+                <input class="reverb-size slider" id="reverb-size" type="range" min="0.1" max="1" value="0.4"
+                    step="0.1">
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="module" src="./assets/app.js"></script>
+
+</html>
