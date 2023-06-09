@@ -9,9 +9,7 @@ tremoloDepthValue.innerHTML = tremoloDepthSlider.value;
 const tremolo = new Tone.Tremolo(
   tremoloFrequencySlider.value,
   tremoloDepthSlider.value
-)
-  .toDestination()
-  .start();
+);
 
   tremoloFrequencySlider.oninput = function () {
     tremoloFrequencyValue.innerHTML = this.value;

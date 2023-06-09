@@ -9,7 +9,7 @@ delayFeedbackValue.innerHTML = delayFeedbackSlider.value;
 const feedbackDelay = new Tone.FeedbackDelay(
   delayTimeSlider.value,
   delayFeedbackSlider.value
-).toDestination();
+);
 
 delayTimeSlider.oninput = function () {
   delayTimeValue.innerHTML = this.value;

@@ -2,7 +2,7 @@ let reverbSizeSlider = document.getElementById("reverb-size");
 let reverbSizeValue = document.getElementById("reverb-size-value");
 reverbSizeValue.innerHTML = reverbSizeSlider.value;
 
-const reverb = new Tone.JCReverb(reverbSizeSlider.value).toDestination();
+const reverb = new Tone.JCReverb(reverbSizeSlider.value);
 
 reverbSizeSlider.oninput = function () {
   reverbSizeValue.innerHTML = this.value;

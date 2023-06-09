@@ -14,9 +14,7 @@ const chorus = new Tone.Chorus(
   chorusFrequencySlider.value,
   chorusDelaySlider.value,
   chorusDepthSlider.value
-)
-  .toDestination()
-  .start();
+);
 
 chorusFrequencySlider.oninput = function () {
   chorusFrequencyValue.innerHTML = this.value;

@@ -2,7 +2,7 @@ let pitchShifterSlider = document.getElementById("pitch-level");
 let pitchShifterValue = document.getElementById("pitch-level-value");
 pitchShifterValue.innerHTML = pitchShifterSlider.value;
 
-const shift = new Tone.FrequencyShifter(pitchShifterSlider.value).toDestination();
+const shift = new Tone.FrequencyShifter(pitchShifterSlider.value);
 
 pitchShifterSlider.oninput = function () {
   pitchShifterValue.innerHTML = this.value;
@@ -13,3 +13,5 @@ pitchShifterSlider.oninput = function () {
 function updatePitchSliders() {
   shift.frequency = pitchShifterValue.innerHTML;
 }
+
+export { shift };

@@ -6,8 +6,8 @@ let bitCrusherLevelSlider = document.getElementById("bitcrusher-level");
 let bitCrusherLevelValue = document.getElementById("bitcrusher-level-value");
 bitCrusherLevelValue.innerHTML = bitCrusherLevelSlider.value;
 
-const dist = new Tone.Distortion(distortionLevelSlider.value).toDestination();
-const crusher = new Tone.BitCrusher(bitCrusherLevelSlider.value).toDestination();
+const dist = new Tone.Distortion(distortionLevelSlider.value);
+const crusher = new Tone.BitCrusher(bitCrusherLevelSlider.value);
 
 distortionLevelSlider.oninput = function () {
   distortionLevelValue.innerHTML = this.value;

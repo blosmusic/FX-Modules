@@ -1,10 +1,12 @@
 // import FX modules
 // todo figure out importing modules
+import { shift } from "./modules/pitchShift.js";
 // import { dist } from "./modules/distortionFX.js";
 // import { crusher } from "./modules/distortionFX.js";
 // import { chorus } from "./modules/chorusFX.js";
 // import { tremolo } from "./modules/tremoloFX.js";
 // import { feedbackDelay } from "./modules/delayFX.js";
+// import { reverb } from "./modules/reverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -19,7 +21,8 @@ const meter = new Tone.Meter(0.8);
 const micFFT = new Tone.FFT(32);
 let inputLevelValueRead = null;
 
-const mic = new Tone.UserMedia().chain(micFFT, meter);
+const mic = new Tone.UserMedia();
+const destination = new Tone.Destination();
 
 // read input level - check if mic is open
 function processAudioInputLevel() {
@@ -49,7 +52,18 @@ function startVoiceChanger() {
       // promise resolves when input is available
       console.log("mic open");
       // what to do when the mic is open
-      mic.chain(shift, dist, chorus, tremolo, feedbackDelay, reverb).start();
+      mic
+        .chain(
+          shift,
+          dist,
+          chorus,
+          tremolo,
+          feedbackDelay,
+          reverb,
+          meter,
+          destination
+        )
+        .start();
       // check input levels
       // setInterval(processAudioInputLevel, 1000);
     })
