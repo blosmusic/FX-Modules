@@ -148,8 +148,61 @@ p {
     background-color: lightcoral;
 }
 
+.shift-range-radio {
+    width: 100vu;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shift-range-radio input {
+    color: #333;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border: 1px solid #333;
+}
+
+input[type="radio"] {
+    appearance: none;
+    background-color: #333;
+    border: 2px solid #333;
+    opacity: 85%;
+}
+
+input[type="radio"]:checked {
+    background-color: red;
+
+}
+
+input[type="radio"]:hover {
+    opacity: 100%;
+    transition: .3s;
+}
+
+label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 5px;
+    padding: 0;
+    text-transform: uppercase;
+}
+
 #distortion-container {
     background-color: green;
+}
+
+#bitcrusher-container {
+    background-color: grey;
 }
 
 #chorus-container {

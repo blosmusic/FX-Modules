@@ -13,3 +13,5 @@ reverbSizeSlider.oninput = function () {
 function updateReverbSliders() {
   reverb.roomSize = reverbSizeValue.innerHTML;
 }
+
+export { reverb, reverbSizeValue, reverbSizeSlider, updateReverbSliders };

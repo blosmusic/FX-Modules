@@ -40,4 +40,13 @@ function updateChorusSliders() {
   chorus.depth = chorusDepthValue.innerHTML;
 }
 
-// export { chorus };
+export {
+  chorus,
+  chorusFrequencyValue,
+  chorusFrequencySlider,
+  updateChorusSliders,
+  chorusDelayValue,
+  chorusDelaySlider,
+  chorusDepthValue,
+  chorusDepthSlider,
+};

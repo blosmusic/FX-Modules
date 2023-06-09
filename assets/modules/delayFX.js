@@ -28,4 +28,4 @@ function updateDelaySliders() {
   feedbackDelay.feedback = delayTimeValue.innerHTML;
 }
 
-// export { feedbackDelay };
+export { feedbackDelay, delayTimeValue, delayTimeSlider, updateDelaySliders };

@@ -1,12 +1,11 @@
 // import FX modules
-// todo figure out importing modules
-import { shift } from "./modules/pitchShift.js";
-// import { dist } from "./modules/distortionFX.js";
-// import { crusher } from "./modules/distortionFX.js";
-// import { chorus } from "./modules/chorusFX.js";
-// import { tremolo } from "./modules/tremoloFX.js";
-// import { feedbackDelay } from "./modules/delayFX.js";
-// import { reverb } from "./modules/reverbFX.js";
+import { shift } from "./modules/shifterFX.js";
+import { dist } from "./modules/distortionFX.js";
+import { crusher } from "./modules/crusherFX.js";
+import { chorus } from "./modules/chorusFX.js";
+import { tremolo } from "./modules/tremoloFX.js";
+import { feedbackDelay } from "./modules/delayFX.js";
+import { reverb } from "./modules/reverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -16,13 +15,19 @@ document.querySelector("h4").addEventListener("click", async () => {
 
 let voiceStartToggle = document.getElementById("voice-start-toggle");
 let micIndicator = document.getElementById("mic-indication");
-// get microphone input
-const meter = new Tone.Meter(0.8);
-const micFFT = new Tone.FFT(32);
-let inputLevelValueRead = null;
 
+// Create Tone buffer
+Tone.context.lookAhead = 0;
+Tone.context.updateInterval = 0.01;
+Tone.context.bufferSize = 256;
+
+// get microphone input
 const mic = new Tone.UserMedia();
-const destination = new Tone.Destination();
+const micFFT = new Tone.FFT(32);
+const meter = new Tone.Meter(0.8);
+let inputLevelValueRead = null;
+const monoOutput = new Tone.Mono();
+const destination = Tone.Destination;
 
 // read input level - check if mic is open
 function processAudioInputLevel() {
@@ -55,12 +60,14 @@ function startVoiceChanger() {
       mic
         .chain(
           shift,
-          dist,
+          // dist,
+          // crusher,
           chorus,
-          tremolo,
-          feedbackDelay,
-          reverb,
+          // tremolo,
+          // feedbackDelay,
+          // reverb,
           meter,
+          monoOutput,
           destination
         )
         .start();
