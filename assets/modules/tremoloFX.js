@@ -11,21 +11,26 @@ const tremolo = new Tone.Tremolo(
   tremoloDepthSlider.value
 );
 
-  tremoloFrequencySlider.oninput = function () {
-    tremoloFrequencyValue.innerHTML = this.value;
-    console.log("Slider value: ", tremoloFrequencyValue.innerHTML);
-    updateTremoloSliders();
-  };
+tremoloFrequencySlider.oninput = function () {
+  tremoloFrequencyValue.innerHTML = this.value;
+  console.log("Slider value: ", tremoloFrequencyValue.innerHTML);
+  updateTremoloSliders();
+};
 
-  tremoloDepthSlider.oninput = function () {
-    tremoloDepthValue.innerHTML = this.value;
-    console.log("Slider value: ", tremoloDepthValue.innerHTML);
-    updateTremoloSliders();
-  };
+tremoloDepthSlider.oninput = function () {
+  tremoloDepthValue.innerHTML = this.value;
+  console.log("Slider value: ", tremoloDepthValue.innerHTML);
+  updateTremoloSliders();
+};
 
-  function updateTremoloSliders() {
-    tremolo.frequency = tremoloFrequencyValue.innerHTML;
-    tremolo.depth = tremoloDepthValue.innerHTML;
-  }
+function updateTremoloSliders() {
+  tremolo.frequency.value = tremoloFrequencyValue.innerHTML;
+  tremolo.depth = tremoloDepthValue.innerHTML;
+}
 
- export { tremolo, tremoloFrequencyValue, tremoloFrequencySlider, updateTremoloSliders };
+export {
+  tremolo,
+  tremoloFrequencyValue,
+  tremoloFrequencySlider,
+  updateTremoloSliders,
+};

@@ -1,11 +1,52 @@
 // import FX modules
-import { shift } from "./modules/shifterFX.js";
-import { dist } from "./modules/distortionFX.js";
-import { crusher } from "./modules/crusherFX.js";
-import { chorus } from "./modules/chorusFX.js";
-import { tremolo } from "./modules/tremoloFX.js";
-import { feedbackDelay } from "./modules/delayFX.js";
-import { reverb } from "./modules/reverbFX.js";
+import {
+  pitchShifterSlider,
+  pitchShifterValue,
+  shift,
+  updatePitchSliders,
+  pitchShiftMode,
+  updatePitchMode,
+} from "./modules/shifterFX.js";
+import {
+  dist,
+  distortionLevelValue,
+  distortionLevelSlider,
+  updateDistortionSliders,
+} from "./modules/distortionFX.js";
+import {
+  crusher,
+  bitCrusherLevelValue,
+  bitCrusherLevelSlider,
+  updateCrusherSliders,
+} from "./modules/crusherFX.js";
+import {
+  chorus,
+  chorusFrequencyValue,
+  chorusFrequencySlider,
+  updateChorusSliders,
+  chorusDelayValue,
+  chorusDelaySlider,
+  chorusDepthValue,
+  chorusDepthSlider,
+} from "./modules/chorusFX.js";
+import {
+  tremolo,
+  tremoloFrequencyValue,
+  tremoloFrequencySlider,
+  updateTremoloSliders,
+} from "./modules/tremoloFX.js";
+import {
+  feedbackDelay,
+  delayTimeValue,
+  delayTimeSlider,
+  updateDelaySliders,
+} from "./modules/delayFX.js";
+import {
+  reverb,
+  reverbSizeValue,
+  reverbSizeSlider,
+  updateReverbSliders,
+} from "./modules/reverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -41,6 +82,7 @@ function processAudioInputLevel() {
 voiceStartToggle.addEventListener("click", () => {
   if (voiceStartToggle.innerText === "START") {
     startVoiceChanger();
+    updateSliders();
   } else if (voiceStartToggle.innerText === "STOP") {
     stopVoiceChanger();
   }
@@ -86,4 +128,14 @@ function stopVoiceChanger() {
   micIndicator.style.backgroundColor = "darkred";
   micIndicator.style.boxShadow = "0 0 0 0 #333";
   mic.close();
+}
+
+function updateSliders() {
+  updatePitchSliders();
+  updateDistortionSliders();
+  updateCrusherSliders();
+  updateChorusSliders();
+  updateTremoloSliders();
+  updateDelaySliders();
+  updateReverbSliders();
 }

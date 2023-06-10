@@ -14,4 +14,9 @@ function updateDistortionSliders() {
   dist.distortion = distortionLevelValue.innerHTML;
 }
 
-export { dist, distortionLevelValue, distortionLevelSlider, updateDistortionSliders };
+export {
+  dist,
+  distortionLevelValue,
+  distortionLevelSlider,
+  updateDistortionSliders,
+};

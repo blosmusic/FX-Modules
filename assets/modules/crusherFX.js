@@ -7,11 +7,16 @@ const crusher = new Tone.BitCrusher(bitCrusherLevelSlider.value);
 bitCrusherLevelSlider.oninput = function () {
   bitCrusherLevelValue.innerHTML = this.value;
   console.log("Slider value: ", bitCrusherLevelValue.innerHTML);
-  updateDistortionSliders();
+  updateCrusherSliders();
 };
 
-function updateDistortionSliders() {
+function updateCrusherSliders() {
   crusher.bits = bitCrusherLevelValue.innerHTML;
 }
 
-export { crusher, bitCrusherLevelValue, bitCrusherLevelSlider, updateDistortionSliders };
+export {
+  crusher,
+  bitCrusherLevelValue,
+  bitCrusherLevelSlider,
+  updateCrusherSliders,
+};

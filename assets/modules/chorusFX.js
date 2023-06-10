@@ -35,9 +35,12 @@ chorusDepthSlider.oninput = function () {
 };
 
 function updateChorusSliders() {
-  chorus.frequency = chorusFrequencyValue.innerHTML;
-  chorus.delayTime = chorusDelayValue.innerHTML;
-  chorus.depth = chorusDepthValue.innerHTML;
+  const frequency = parseFloat(chorusFrequencyValue.innerHTML);
+  const delayTime = parseFloat(chorusDelayValue.innerHTML);
+  const depth = parseFloat(chorusDepthValue.innerHTML);
+  chorus.frequency.value = frequency;
+  chorus.delayTime = delayTime;
+  chorus.depth = depth;
 }
 
 export {
