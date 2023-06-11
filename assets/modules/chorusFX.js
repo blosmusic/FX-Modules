@@ -1,19 +1,19 @@
-let chorusFrequencySlider = document.getElementById("chorus-frequency");
-let chorusFrequencyValue = document.getElementById("chorus-frequency-value");
+const chorusFrequencySlider = document.getElementById("chorus-frequency");
+const chorusFrequencyValue = document.getElementById("chorus-frequency-value");
 chorusFrequencyValue.innerHTML = chorusFrequencySlider.value;
 
-let chorusDelaySlider = document.getElementById("chorus-delay");
-let chorusDelayValue = document.getElementById("chorus-delay-value");
+const chorusDelaySlider = document.getElementById("chorus-delay");
+const chorusDelayValue = document.getElementById("chorus-delay-value");
 chorusDelayValue.innerHTML = chorusDelaySlider.value;
 
-let chorusDepthSlider = document.getElementById("chorus-depth");
-let chorusDepthValue = document.getElementById("chorus-depth-value");
+const chorusDepthSlider = document.getElementById("chorus-depth");
+const chorusDepthValue = document.getElementById("chorus-depth-value");
 chorusDepthValue.innerHTML = chorusDepthSlider.value;
 
 const chorus = new Tone.Chorus(
-  chorusFrequencySlider.value,
-  chorusDelaySlider.value,
-  chorusDepthSlider.value
+  parseFloat(chorusFrequencySlider.value),
+  parseFloat(chorusDelaySlider.value),
+  parseFloat(chorusDepthSlider.value)
 );
 
 chorusFrequencySlider.oninput = function () {
