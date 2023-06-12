@@ -51,10 +51,10 @@ function updatePitchMode() {
 }
 
 export {
-  pitchShifterSlider,
-  pitchShifterValue,
+  // pitchShifterSlider,
+  // pitchShifterValue,
   shift,
-  updatePitchSliders,
-  pitchShiftMode,
-  updatePitchMode,
+  // updatePitchSliders,
+  // pitchShiftMode,
+  // updatePitchMode,
 };

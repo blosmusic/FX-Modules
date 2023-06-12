@@ -1,20 +1,23 @@
-const chorusFrequencySlider = document.getElementById("chorus-frequency");
-const chorusFrequencyValue = document.getElementById("chorus-frequency-value");
+let chorusFrequencySlider = document.getElementById("chorus-frequency");
+let chorusFrequencyValue = document.getElementById("chorus-frequency-value");
 chorusFrequencyValue.innerHTML = chorusFrequencySlider.value;
 
-const chorusDelaySlider = document.getElementById("chorus-delay");
-const chorusDelayValue = document.getElementById("chorus-delay-value");
+let chorusDelaySlider = document.getElementById("chorus-delay");
+let chorusDelayValue = document.getElementById("chorus-delay-value");
 chorusDelayValue.innerHTML = chorusDelaySlider.value;
 
-const chorusDepthSlider = document.getElementById("chorus-depth");
-const chorusDepthValue = document.getElementById("chorus-depth-value");
+let chorusDepthSlider = document.getElementById("chorus-depth");
+let chorusDepthValue = document.getElementById("chorus-depth-value");
 chorusDepthValue.innerHTML = chorusDepthSlider.value;
 
-const chorus = new Tone.Chorus(
-  parseFloat(chorusFrequencySlider.value),
-  parseFloat(chorusDelaySlider.value),
-  parseFloat(chorusDepthSlider.value)
-);
+const chorus = new Tone.Chorus({
+  frequency: chorusFrequencySlider.value,
+  delayTime: chorusDelaySlider.value,
+  depth: chorusDepthSlider.value,
+  type: "sine",
+  spread: 0,
+  wet: 0.7,
+});
 
 chorusFrequencySlider.oninput = function () {
   chorusFrequencyValue.innerHTML = this.value;
@@ -35,12 +38,16 @@ chorusDepthSlider.oninput = function () {
 };
 
 function updateChorusSliders() {
-  const frequency = parseFloat(chorusFrequencyValue.innerHTML);
-  const delayTime = parseFloat(chorusDelayValue.innerHTML);
-  const depth = parseFloat(chorusDepthValue.innerHTML);
-  chorus.frequency.value = frequency;
-  chorus.delayTime = delayTime;
-  chorus.depth = depth;
+  console.log("Updating chorus sliders...");
+  let frequency = parseFloat(chorusFrequencyValue.innerHTML);
+  let delayTime = parseFloat(chorusDelayValue.innerHTML);
+  let depth = parseFloat(chorusDepthValue.innerHTML);
+
+  chorus.set({
+    frequency: frequency,
+    delayTime: delayTime,
+    depth: depth,
+  });
 }
 
 export {

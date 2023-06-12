@@ -7,8 +7,12 @@ let tremoloDepthValue = document.getElementById("tremolo-depth-value");
 tremoloDepthValue.innerHTML = tremoloDepthSlider.value;
 
 const tremolo = new Tone.Tremolo(
-  tremoloFrequencySlider.value,
-  tremoloDepthSlider.value
+  9,
+  0.75 //{
+
+  // frequency: tremoloFrequencySlider.value,
+  // depth: tremoloDepthSlider.value
+  // }
 );
 
 tremoloFrequencySlider.oninput = function () {
@@ -24,9 +28,16 @@ tremoloDepthSlider.oninput = function () {
 };
 
 function updateTremoloSliders() {
-  tremolo.frequency.value = tremoloFrequencyValue.innerHTML;
-  tremolo.depth = tremoloDepthValue.innerHTML;
-}
+  console.log("Tremolo frequency: ", tremoloFrequencyValue.innerHTML);
+  console.log("Tremolo depth: ", tremoloDepthValue.innerHTML);
+  let frequency = parseFloat(tremoloFrequencyValue.innerHTML);
+  let depth = parseFloat(tremoloDepthValue.innerHTML);
+
+  tremolo.set({
+    frequency: frequency,
+    depth: depth,
+  });
+  }
 
 export {
   tremolo,

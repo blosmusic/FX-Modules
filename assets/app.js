@@ -1,11 +1,11 @@
 // import FX modules
 import {
-  pitchShifterSlider,
-  pitchShifterValue,
+  // pitchShifterSlider,
+  // pitchShifterValue,
   shift,
-  updatePitchSliders,
-  pitchShiftMode,
-  updatePitchMode,
+  // updatePitchSliders,
+  // pitchShiftMode,
+  // updatePitchMode,
 } from "./modules/shifterFX.js";
 import {
   dist,
@@ -29,24 +29,24 @@ import {
   chorusDepthValue,
   chorusDepthSlider,
 } from "./modules/chorusFX.js";
-import {
-  tremolo,
-  tremoloFrequencyValue,
-  tremoloFrequencySlider,
-  updateTremoloSliders,
-} from "./modules/tremoloFX.js";
-import {
-  feedbackDelay,
-  delayTimeValue,
-  delayTimeSlider,
-  updateDelaySliders,
-} from "./modules/delayFX.js";
-import {
-  reverb,
-  reverbSizeValue,
-  reverbSizeSlider,
-  updateReverbSliders,
-} from "./modules/reverbFX.js";
+// import {
+//   tremolo,
+//   tremoloFrequencyValue,
+//   tremoloFrequencySlider,
+//   updateTremoloSliders,
+// } from "./modules/tremoloFX.js";
+// import {
+//   feedbackDelay,
+//   delayTimeValue,
+//   delayTimeSlider,
+//   updateDelaySliders,
+// } from "./modules/delayFX.js";
+// import {
+//   reverb,
+//   reverbSizeValue,
+//   reverbSizeSlider,
+//   updateReverbSliders,
+// } from "./modules/reverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -68,11 +68,12 @@ const micFFT = new Tone.FFT(32);
 const meter = new Tone.Meter(0.8);
 let inputLevelValueRead = null;
 const monoOutput = new Tone.Mono();
+const monoLeft = new Tone.Mono({ channelCount: 1 });
+const monoRight = new Tone.Mono({ channelCount: -1 });
 const destination = Tone.Destination;
 
 // read input level - check if mic is open
 function processAudioInputLevel() {
-  console.log("processAudioInputLevel called");
   inputLevelValueRead = meter.getValue().toFixed(2);
   // print the incoming mic levels in decibels
   console.log("The Decibel level is:", inputLevelValueRead, "dB");
@@ -82,7 +83,7 @@ function processAudioInputLevel() {
 voiceStartToggle.addEventListener("click", () => {
   if (voiceStartToggle.innerText === "START") {
     startVoiceChanger();
-    updateSliders();
+    // updateSliders();
   } else if (voiceStartToggle.innerText === "STOP") {
     stopVoiceChanger();
   }
@@ -99,20 +100,19 @@ function startVoiceChanger() {
       // promise resolves when input is available
       console.log("mic open");
       // what to do when the mic is open
-      mic
-        .chain(
-          shift,
-          // dist,
-          // crusher,
-          chorus,
-          // tremolo,
-          // feedbackDelay,
-          // reverb,
-          meter,
-          monoOutput,
-          destination
-        )
-        .start();
+      mic.connect(micFFT);
+      // connect mic to FX chain
+      micFFT.connect(shift);
+      shift.connect(chorus.start());
+      // dist.connect(crusher);
+      // crusher.connect(chorus);
+      // chorus.connect(tremolo);
+      chorus.connect(meter);
+      // feedbackDelay.connect(reverb);
+      // reverb.connect(destination);
+      // connect FX to output and destination
+      // meter.chain(monoOutput, destination);
+      meter.chain(monoLeft, monoRight, destination);
       // check input levels
       // setInterval(processAudioInputLevel, 1000);
     })
@@ -131,11 +131,12 @@ function stopVoiceChanger() {
 }
 
 function updateSliders() {
-  updatePitchSliders();
-  updateDistortionSliders();
-  updateCrusherSliders();
-  updateChorusSliders();
-  updateTremoloSliders();
-  updateDelaySliders();
-  updateReverbSliders();
+  // updatePitchSliders();
+  // updateDistortionSliders();
+  // updateCrusherSliders();
+  // updateChorusSliders();
+  // updateTremoloSliders();
+  // updateDelaySliders();
+  // updateReverbSliders();
 }
+updateSliders();
