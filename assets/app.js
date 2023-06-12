@@ -65,13 +65,13 @@ import {
   delayWetDrySlider,
 } from "./modules/delayFX.js";
 import {
-  reverb,
-  reverbSizeValue,
-  reverbSizeSlider,
-  updateReverbSliders,
-  reverbWetDryValue,
-  reverbWetDrySlider,
-} from "./modules/reverbFX.js";
+  jcReverb,
+  jcReverbSizeValue,
+  jcReverbSizeSlider,
+  updatejcReverbSliders,
+  jcReverbWetDryValue,
+  jcReverbWetDrySlider,
+} from "./modules/jcReverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -134,8 +134,8 @@ function startVoiceChanger() {
       crusher.connect(chorus.start());
       chorus.connect(tremolo.start());
       tremolo.connect(feedbackDelay);
-      feedbackDelay.connect(reverb);
-      reverb.connect(meter);
+      feedbackDelay.connect(jcReverb);
+      jcReverb.connect(meter);
       // connect FX to output and destination
       meter.chain(monoOutput, destination);
       // meter.chain(monoLeft, monoRight, destination);
