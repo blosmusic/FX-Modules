@@ -53,18 +53,25 @@ import {
   tremoloWetDryValue,
   tremoloWetDrySlider,
 } from "./modules/tremoloFX.js";
-// import {
-//   feedbackDelay,
-//   delayTimeValue,
-//   delayTimeSlider,
-//   updateDelaySliders,
-// } from "./modules/delayFX.js";
-// import {
-//   reverb,
-//   reverbSizeValue,
-//   reverbSizeSlider,
-//   updateReverbSliders,
-// } from "./modules/reverbFX.js";
+import {
+  feedbackDelay,
+  // maxDelayTime,
+  delayTimeValue,
+  delayTimeSlider,
+  updateDelaySliders,
+  delayFeedbackValue,
+  delayFeedbackSlider,
+  delayWetDryValue,
+  delayWetDrySlider,
+} from "./modules/delayFX.js";
+import {
+  reverb,
+  reverbSizeValue,
+  reverbSizeSlider,
+  updateReverbSliders,
+  reverbWetDryValue,
+  reverbWetDrySlider,
+} from "./modules/reverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -126,9 +133,9 @@ function startVoiceChanger() {
       chebydistortion.connect(crusher);
       crusher.connect(chorus.start());
       chorus.connect(tremolo.start());
-      tremolo.connect(meter);
-      // feedbackDelay.connect(reverb);
-      // reverb.connect(destination);
+      tremolo.connect(feedbackDelay);
+      feedbackDelay.connect(reverb);
+      reverb.connect(meter);
       // connect FX to output and destination
       meter.chain(monoOutput, destination);
       // meter.chain(monoLeft, monoRight, destination);

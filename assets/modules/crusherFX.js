@@ -13,13 +13,13 @@ const crusher = new Tone.BitCrusher({
 
 bitCrusherLevelSlider.oninput = function () {
   bitCrusherLevelValue.innerHTML = this.value;
-  console.log("Slider value: ", bitCrusherLevelValue.innerHTML);
+  // console.log("Slider value: ", bitCrusherLevelValue.innerHTML);
   updateCrusherSliders();
 };
 
 bitCrusherWetDrySlider.oninput = function () {
   bitCrusherWetDryValue.innerHTML = this.value;
-  console.log("Slider value: ", bitCrusherWetDryValue.innerHTML);
+  // console.log("Slider value: ", bitCrusherWetDryValue.innerHTML);
   updateCrusherSliders();
 };
 

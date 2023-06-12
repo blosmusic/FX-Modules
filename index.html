@@ -50,7 +50,7 @@
                     value="0.8" step="0.01">
                 <p class="fx-description">Wet/Dry</p>
                 <span id="distortion-wet-dry-value"></span>
-                <input class="distortion-wet-dry slider" id="distortion-wet-dry" type="range" min="0" max="1" value="0.7"
+                <input class="distortion-wet-dry slider" id="distortion-wet-dry" type="range" min="0" max="1" value="1.0"
                     step="0.01">
             </div>
 
@@ -62,7 +62,7 @@
                     value="30" step="1">
                 <p class="fx-description">Wet/Dry</p>
                 <span id="chebydistortion-wet-dry-value"></span>
-                <input class="chebydistortion-wet-dry slider" id="chebydistortion-wet-dry" type="range" min="0" max="1" value="0.7"
+                <input class="chebydistortion-wet-dry slider" id="chebydistortion-wet-dry" type="range" min="0" max="1" value="0.3"
                     step="0.01">
             </div>
 
@@ -74,7 +74,7 @@
                     value="4" step="1">
                 <p class="fx-description">Wet/Dry</p>
                 <span id="bitcrusher-wet-dry-value"></span>
-                <input class="bitcrusher-wet-dry slider" id="bitcrusher-wet-dry" type="range" min="0" max="1" value="0.7"
+                <input class="bitcrusher-wet-dry slider" id="bitcrusher-wet-dry" type="range" min="0" max="1" value="1.0"
                     step="0.01">
             </div>
 
@@ -82,7 +82,7 @@
                 <h3>Chorus</h3>
                 <p class="fx-description">Frequency</p>
                 <span id="chorus-frequency-value"></span>
-                <input class="chorus-frequency slider" id="chorus-frequency" type="range" min="0.1" max="10" value="8"
+                <input class="chorus-frequency slider" id="chorus-frequency" type="range" min="0.1" max="10" value="2"
                     step="0.1">
                 <p class="fx-description">Delay</p>
                 <span id="chorus-delay-value"></span>
@@ -94,7 +94,7 @@
                     step="0.01">
                 <p class="fx-description">Wet/Dry</p>
                 <span id="chorus-wet-dry-value"></span>
-                <input class="chorus-wet-dry slider" id="chorus-wet-dry" type="range" min="0" max="1" value="0.7"
+                <input class="chorus-wet-dry slider" id="chorus-wet-dry" type="range" min="0" max="1" value="0.5"
                     step="0.01">
             </div>
 
@@ -102,7 +102,7 @@
                 <h3>Tremolo</h3>
                 <p class="fx-description">Frequency</p>
                 <span id="tremolo-frequency-value"></span>
-                <input class="tremolo-frequency slider" id="tremolo-frequency" type="range" min="1" max="10" value="9"
+                <input class="tremolo-frequency slider" id="tremolo-frequency" type="range" min="1" max="10" value="3"
                     step="0.1">
                 <p class="fx-description">Depth</p>
                 <span id="tremolo-depth-value"></span>
@@ -110,29 +110,32 @@
                     step="0.01">
                 <p class="fx-description">Wet/Dry</p>
                 <span id="tremolo-wet-dry-value"></span>
-                <input class="tremolo-wet-dry slider" id="tremolo-wet-dry" type="range" min="0" max="1" value="0.7"
+                <input class="tremolo-wet-dry slider" id="tremolo-wet-dry" type="range" min="0" max="1" value="0.5"
                     step="0.01">
             </div>
 
             <div class="fx-section" id="delay-container">
                 <h3>Delay</h3>
-                <!-- todo add in time values in notation -->
                 <p class="fx-description">Time</p>
                 <span id="delay-time-value"></span>
-                <input class="delay-time slider" id="delay-time" type="range" min="0" max="1" value=""
-                    step="0.01">
+                <input class="delay-time slider" id="delay-time" type="range" min="0.01" max="2" value="0.15" step="0.01">
                 <p class="fx-description">Feedback</p>
                 <span id="delay-feedback-value"></span>
-                <input class="delay-feedback slider" id="delay-feedback" type="range" min="0" max="1" value="0.8"
-                    step="0.1">
+                <input class="delay-feedback slider" id="delay-feedback" type="range" min="0.01" max="0.99" value="0.8" step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="delay-wet-dry-value"></span>
+                <input class="delay-wet-dry slider" id="delay-wet-dry" type="range" min="0" max="1" value="0.5" step="0.01">
             </div>
 
             <div class="fx-section" id="reverb-container">
                 <h3>Reverb</h3>
                 <p class="fx-description">Size</p>
                 <span id="reverb-size-value"></span>
-                <input class="reverb-size slider" id="reverb-size" type="range" min="0" max="1" value="0.4"
-                    step="0.1">
+                <input class="reverb-size slider" id="reverb-size" type="range" min="0" max="0.9" value="0.2"
+                    step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="reverb-wet-dry-value"></span>
+                <input class="reverb-wet-dry slider" id="reverb-wet-dry" type="range" min="0" max="1" value="0.4" step="0.01">
             </div>
 
         </div>

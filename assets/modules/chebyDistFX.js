@@ -22,13 +22,13 @@ const chebydistortion = new Tone.Chebyshev({
 
 chebydistortionLevelSlider.oninput = function () {
   chebydistortionLevelValue.innerHTML = this.value;
-  console.log("Slider value: ", chebydistortionLevelValue.innerHTML);
+  // console.log("Slider value: ", chebydistortionLevelValue.innerHTML);
   updateChebydistortionSliders();
 };
 
 chebydistortionWetDrySlider.oninput = function () {
   chebydistortionWetDryValue.innerHTML = this.value;
-  console.log("Slider value: ", chebydistortionWetDryValue.innerHTML);
+  // console.log("Slider value: ", chebydistortionWetDryValue.innerHTML);
   updateChebydistortionSliders();
 };
 
