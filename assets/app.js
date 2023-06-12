@@ -28,13 +28,19 @@ import {
   chorusDelaySlider,
   chorusDepthValue,
   chorusDepthSlider,
+  chorusWetDryValue,
+  chorusWetDrySlider,
 } from "./modules/chorusFX.js";
-// import {
-//   tremolo,
-//   tremoloFrequencyValue,
-//   tremoloFrequencySlider,
-//   updateTremoloSliders,
-// } from "./modules/tremoloFX.js";
+import {
+  tremolo,
+  tremoloFrequencyValue,
+  tremoloFrequencySlider,
+  updateTremoloSliders,
+  tremoloDepthValue,
+  tremoloDepthSlider,
+  tremoloWetDryValue,
+  tremoloWetDrySlider,
+} from "./modules/tremoloFX.js";
 // import {
 //   feedbackDelay,
 //   delayTimeValue,
@@ -54,7 +60,7 @@ document.querySelector("h4").addEventListener("click", async () => {
   console.log("audio is ready");
 });
 
-let voiceStartToggle = document.getElementById("voice-start-toggle");
+let audioStartToggle = document.getElementById("audio-start-toggle");
 let micIndicator = document.getElementById("mic-indication");
 
 // Create Tone buffer
@@ -80,17 +86,17 @@ function processAudioInputLevel() {
 }
 
 // toggle mic on/off
-voiceStartToggle.addEventListener("click", () => {
-  if (voiceStartToggle.innerText === "START") {
+audioStartToggle.addEventListener("click", () => {
+  if (audioStartToggle.innerText === "START") {
     startVoiceChanger();
     // updateSliders();
-  } else if (voiceStartToggle.innerText === "STOP") {
+  } else if (audioStartToggle.innerText === "STOP") {
     stopVoiceChanger();
   }
 });
 
 function startVoiceChanger() {
-  voiceStartToggle.innerText = "STOP";
+  audioStartToggle.innerText = "STOP";
   console.log("mic started");
   micIndicator.style.backgroundColor = "red";
   micIndicator.style.boxShadow = "0 0 0 1.5px red";
@@ -106,13 +112,13 @@ function startVoiceChanger() {
       shift.connect(chorus.start());
       // dist.connect(crusher);
       // crusher.connect(chorus);
-      // chorus.connect(tremolo);
-      chorus.connect(meter);
+      chorus.connect(tremolo.start());
+      tremolo.connect(meter);
       // feedbackDelay.connect(reverb);
       // reverb.connect(destination);
       // connect FX to output and destination
-      // meter.chain(monoOutput, destination);
-      meter.chain(monoLeft, monoRight, destination);
+      meter.chain(monoOutput, destination);
+      // meter.chain(monoLeft, monoRight, destination);
       // check input levels
       // setInterval(processAudioInputLevel, 1000);
     })
@@ -123,7 +129,7 @@ function startVoiceChanger() {
 }
 
 function stopVoiceChanger() {
-  voiceStartToggle.innerText = "START";
+  audioStartToggle.innerText = "START";
   console.log("mic stopped");
   micIndicator.style.backgroundColor = "darkred";
   micIndicator.style.boxShadow = "0 0 0 0 #333";

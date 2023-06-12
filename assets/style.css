@@ -80,7 +80,7 @@ p {
 
 }
 
-.voice-changer-container {
+.audio-changer-container {
     padding: 20px;
 }
 
@@ -91,7 +91,7 @@ p {
     margin: 20px 15px;
 }
 
-.voice-start-toggle {
+.audio-start-toggle {
     background-color: #00ff91;
     border: 3px solid #333;
     border-radius: 10%;
@@ -105,7 +105,7 @@ p {
     cursor: pointer;
 }
 
-.voice-start-toggle:hover {
+.audio-start-toggle:hover {
     background-color: #333;
     color: #00ff91;
     border: 3px solid #00ff91;
@@ -132,8 +132,8 @@ p {
 }
 
 .fx-section {
-    width: 210px;
-    height: 360px;
+    width: 250px;
+    height: 480px;
     display: inline-block;
     vertical-align: text-top;
     flex-direction: column;
