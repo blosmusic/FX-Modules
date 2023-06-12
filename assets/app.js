@@ -16,6 +16,14 @@ import {
   updateDistortionSliders,
 } from "./modules/distortionFX.js";
 import {
+  chebydistortion,
+  chebydistortionLevelValue,
+  chebydistortionLevelSlider,
+  chebydistortionWetDryValue,
+  chebydistortionWetDrySlider,
+  updateChebydistortionSliders,
+} from "./modules/chebyDistFX.js";
+import {
   crusher,
   bitCrusherLevelValue,
   bitCrusherLevelSlider,
@@ -114,7 +122,8 @@ function startVoiceChanger() {
       // connect mic to FX chain
       micFFT.connect(shift);
       shift.connect(dist);
-      dist.connect(crusher);
+      dist.connect(chebydistortion);
+      chebydistortion.connect(crusher);
       crusher.connect(chorus.start());
       chorus.connect(tremolo.start());
       tremolo.connect(meter);
