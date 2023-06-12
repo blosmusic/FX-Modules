@@ -11,12 +11,16 @@ import {
   dist,
   distortionLevelValue,
   distortionLevelSlider,
+  distortionWetDryValue,
+  distortionWetDrySlider,
   updateDistortionSliders,
 } from "./modules/distortionFX.js";
 import {
   crusher,
   bitCrusherLevelValue,
   bitCrusherLevelSlider,
+  bitCrusherWetDryValue,
+  bitCrusherWetDrySlider,
   updateCrusherSliders,
 } from "./modules/crusherFX.js";
 import {
@@ -66,7 +70,7 @@ let micIndicator = document.getElementById("mic-indication");
 // Create Tone buffer
 Tone.context.lookAhead = 0;
 Tone.context.updateInterval = 0.01;
-Tone.context.bufferSize = 256;
+Tone.context.bufferSize = 128;
 
 // get microphone input
 const mic = new Tone.UserMedia();
@@ -109,9 +113,9 @@ function startVoiceChanger() {
       mic.connect(micFFT);
       // connect mic to FX chain
       micFFT.connect(shift);
-      shift.connect(chorus.start());
-      // dist.connect(crusher);
-      // crusher.connect(chorus);
+      shift.connect(dist);
+      dist.connect(crusher);
+      crusher.connect(chorus.start());
       chorus.connect(tremolo.start());
       tremolo.connect(meter);
       // feedbackDelay.connect(reverb);
@@ -135,14 +139,3 @@ function stopVoiceChanger() {
   micIndicator.style.boxShadow = "0 0 0 0 #333";
   mic.close();
 }
-
-function updateSliders() {
-  // updatePitchSliders();
-  // updateDistortionSliders();
-  // updateCrusherSliders();
-  // updateChorusSliders();
-  // updateTremoloSliders();
-  // updateDelaySliders();
-  // updateReverbSliders();
-}
-updateSliders();
