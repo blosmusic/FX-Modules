@@ -13,12 +13,12 @@ const freeverbWetDryValue = document.getElementById("freeverb-wet-dry-value");
 freeverbWetDryValue.innerHTML = freeverbWetDrySlider.value;
 
 const freeverb = new Tone.Freeverb({
-  dampening: parseFloat(freeverbDampeningFrequencySlider.value),
-  roomSize: parseFloat(freeverbRoomSizeSlider.value),
-  wet: parseFloat(freeverbWetDrySlider.value),
+  dampening: freeverbDampeningFrequencySlider.value,
+  roomSize: freeverbRoomSizeSlider.value,
+  wet: freeverbWetDrySlider.value,
 });
 
-function updatefreeverbSliders() {
+function updateFreeverbSliders() {
   freeverb.set({
     dampening: parseFloat(freeverbDampeningFrequencyValue.innerHTML),
     roomSize: parseFloat(freeverbRoomSizeValue.innerHTML),
@@ -33,7 +33,7 @@ freeverbDampeningFrequencySlider.oninput =
       freeverbDampeningFrequencyValue.innerHTML = freeverbDampeningFrequencySlider.value;
       freeverbRoomSizeValue.innerHTML = freeverbRoomSizeSlider.value;
       freeverbWetDryValue.innerHTML = freeverbWetDrySlider.value;
-      updatefreeverbSliders();
+      updateFreeverbSliders();
     };
 
 export {
@@ -42,7 +42,7 @@ export {
   freeverbDampeningFrequencySlider,
   freeverbRoomSizeValue,
   freeverbRoomSizeSlider,
-  updatefreeverbSliders,
+  updateFreeverbSliders,
   freeverbWetDryValue,
   freeverbWetDrySlider,
 };
