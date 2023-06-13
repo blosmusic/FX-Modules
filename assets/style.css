@@ -228,6 +228,10 @@ label {
     background-color: darkslategray;
 }
 
+#freeverb-container {
+    background-color: violet;
+}
+
 
 span {
     font-size: 22px;

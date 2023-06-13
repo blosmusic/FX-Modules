@@ -1,43 +1,48 @@
-let reverbDecaySlider = document.getElementById("reverb-decay");
-let reverbDecayValue = document.getElementById("reverb-decay-value");
-reverbDecayValue.innerHTML = reverbDecaySlider.value;
+const freeverbDampeningFrequencySlider = document.getElementById("freeverb-dampening");
+const freeverbDampeningFrequencyValue = document.getElementById("freeverb-dampening-value");
+freeverbDampeningFrequencyValue.innerHTML = freeverbDampeningFrequencySlider.value;
 
-let reverbWetDrySlider = document.getElementById("reverb-wet-dry");
-let reverbWetDryValue = document.getElementById("reverb-wet-dry-value");
-reverbWetDryValue.innerHTML = reverbWetDrySlider.value;
+const freeverbRoomSizeSlider = document.getElementById("freeverb-room-size");
+const freeverbRoomSizeValue = document.getElementById(
+  "freeverb-room-size-value"
+);
+freeverbRoomSizeValue.innerHTML = freeverbRoomSizeSlider.value;
 
-const reverb = new Tone.Reverb({
-  decay: reverbDecaySlider.value,
-  wet: reverbWetDrySlider.value,
+const freeverbWetDrySlider = document.getElementById("freeverb-wet-dry");
+const freeverbWetDryValue = document.getElementById("freeverb-wet-dry-value");
+freeverbWetDryValue.innerHTML = freeverbWetDrySlider.value;
+
+const freeverb = new Tone.Freeverb({
+  dampening: parseFloat(freeverbDampeningFrequencySlider.value),
+  roomSize: parseFloat(freeverbRoomSizeSlider.value),
+  wet: parseFloat(freeverbWetDrySlider.value),
 });
 
-reverbDecaySlider.oninput = function () {
-  reverbDecayValue.innerHTML = this.value;
-  console.log("Slider value: ", reverbDecayValue.innerHTML);
-  updateReverbSliders();
-};
-
-reverbWetDrySlider.oninput = function () {
-  reverbWetDryValue.innerHTML = this.value;
-  console.log("Slider value: ", reverbWetDryValue.innerHTML);
-  updateReverbSliders();
-};
-
-function updateReverbSliders() {
-  let decay = parseFloat(reverbDecayValue.innerHTML);
-  let wetDry = parseFloat(reverbWetDryValue.innerHTML);
-
-  reverb.set({
-    decay: decay,
-    wet: wetDry,
+function updatefreeverbSliders() {
+  freeverb.set({
+    dampening: parseFloat(freeverbDampeningFrequencyValue.innerHTML),
+    roomSize: parseFloat(freeverbRoomSizeValue.innerHTML),
+    wet: parseFloat(freeverbWetDryValue.innerHTML),
   });
 }
 
+freeverbDampeningFrequencySlider.oninput =
+  freeverbRoomSizeSlider.oninput =
+  freeverbWetDrySlider.oninput =
+    function () {
+      freeverbDampeningFrequencyValue.innerHTML = freeverbDampeningFrequencySlider.value;
+      freeverbRoomSizeValue.innerHTML = freeverbRoomSizeSlider.value;
+      freeverbWetDryValue.innerHTML = freeverbWetDrySlider.value;
+      updatefreeverbSliders();
+    };
+
 export {
-  reverb,
-  reverbDecayValue,
-  reverbDecaySlider,
-  updateReverbSliders,
-  reverbWetDryValue,
-  reverbWetDrySlider,
+  freeverb,
+  freeverbDampeningFrequencyValue,
+  freeverbDampeningFrequencySlider,
+  freeverbRoomSizeValue,
+  freeverbRoomSizeSlider,
+  updatefreeverbSliders,
+  freeverbWetDryValue,
+  freeverbWetDrySlider,
 };

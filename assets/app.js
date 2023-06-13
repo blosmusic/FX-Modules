@@ -1,87 +1,14 @@
 // import FX modules
-import {
-  // pitchShifterSlider,
-  // pitchShifterValue,
-  shift,
-  // updatePitchSliders,
-  // pitchShiftMode,
-  // updatePitchMode,
-} from "./modules/shifterFX.js";
-import {
-  dist,
-  distortionLevelValue,
-  distortionLevelSlider,
-  distortionWetDryValue,
-  distortionWetDrySlider,
-  updateDistortionSliders,
-} from "./modules/distortionFX.js";
-import {
-  chebydistortion,
-  chebydistortionLevelValue,
-  chebydistortionLevelSlider,
-  chebydistortionWetDryValue,
-  chebydistortionWetDrySlider,
-  updateChebydistortionSliders,
-} from "./modules/chebyDistFX.js";
-import {
-  crusher,
-  bitCrusherLevelValue,
-  bitCrusherLevelSlider,
-  bitCrusherWetDryValue,
-  bitCrusherWetDrySlider,
-  updateCrusherSliders,
-} from "./modules/crusherFX.js";
-import {
-  chorus,
-  chorusFrequencyValue,
-  chorusFrequencySlider,
-  updateChorusSliders,
-  chorusDelayValue,
-  chorusDelaySlider,
-  chorusDepthValue,
-  chorusDepthSlider,
-  chorusWetDryValue,
-  chorusWetDrySlider,
-} from "./modules/chorusFX.js";
-import {
-  tremolo,
-  tremoloFrequencyValue,
-  tremoloFrequencySlider,
-  updateTremoloSliders,
-  tremoloDepthValue,
-  tremoloDepthSlider,
-  tremoloWetDryValue,
-  tremoloWetDrySlider,
-} from "./modules/tremoloFX.js";
-import {
-  feedbackDelay,
-  // maxDelayTime,
-  delayTimeValue,
-  delayTimeSlider,
-  updateDelaySliders,
-  delayFeedbackValue,
-  delayFeedbackSlider,
-  delayWetDryValue,
-  delayWetDrySlider,
-} from "./modules/delayFX.js";
-import {
-  jcReverb,
-  jcReverbSizeValue,
-  jcReverbSizeSlider,
-  updatejcReverbSliders,
-  jcReverbWetDryValue,
-  jcReverbWetDrySlider,
-} from "./modules/jcReverbFX.js";
-import {
-  reverb,
-  reverbDecayTimeValue,
-  reverbDecayTimeSlider,
-  reverbPreDelayValue,
-  reverbPreDelaySlider,
-  updateReverbSliders,
-  reverbWetDryValue,
-  reverbWetDrySlider,
-} from "./modules/reverbFX.js";
+import { shift } from "./modules/shifterFX.js";
+import { dist } from "./modules/distortionFX.js";
+import { chebydistortion } from "./modules/chebyDistFX.js";
+import { crusher } from "./modules/crusherFX.js";
+import { chorus } from "./modules/chorusFX.js";
+import { tremolo } from "./modules/tremoloFX.js";
+import { feedbackDelay } from "./modules/delayFX.js";
+import { jcReverb } from "./modules/jcReverbFX.js";
+import { reverb } from "./modules/reverbFX.js";
+import { freeverb } from "./modules/freeverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -146,7 +73,8 @@ function startVoiceChanger() {
       tremolo.connect(feedbackDelay);
       feedbackDelay.connect(jcReverb);
       jcReverb.connect(reverb);
-      reverb.connect(meter);
+      reverb.connect(freeverb);
+      freeverb.connect(meter);
       // connect FX to output and destination
       meter.chain(monoOutput, destination);
       // meter.chain(monoLeft, monoRight, destination);
