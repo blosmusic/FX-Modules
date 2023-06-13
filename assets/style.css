@@ -132,8 +132,8 @@ p {
 }
 
 .fx-section {
-    width: 250px;
-    height: 480px;
+    width: 360px;
+    height: 650px;
     display: inline-block;
     vertical-align: text-top;
     flex-direction: column;
@@ -202,7 +202,7 @@ label {
 }
 
 #chebydistortion-container {
-    background-color: orangered;
+    background-color: violet;
 }
 
 #bitcrusher-container {
@@ -228,8 +228,8 @@ label {
     background-color: darkslategray;
 }
 
-#freeverb-container {
-    background-color: violet;
+#phaser-container {
+    background-color: orangered;
 }
 
 

@@ -4,16 +4,15 @@ import { dist } from "./modules/distortionFX.js";
 import { chebydistortion } from "./modules/chebyDistFX.js";
 import { crusher } from "./modules/crusherFX.js";
 import { chorus } from "./modules/chorusFX.js";
+import { phaser } from "./modules/phaserFX.js";
 import { tremolo } from "./modules/tremoloFX.js";
 import { feedbackDelay } from "./modules/delayFX.js";
 import { jcReverb } from "./modules/jcReverbFX.js";
 import { reverb } from "./modules/reverbFX.js";
-import { freeverb } from "./modules/freeverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
   document.querySelector("h4").innerText = "Permission Granted";
-  console.log("audio is ready");
 });
 
 let audioStartToggle = document.getElementById("audio-start-toggle");
@@ -45,7 +44,6 @@ function processAudioInputLevel() {
 audioStartToggle.addEventListener("click", () => {
   if (audioStartToggle.innerText === "START") {
     startVoiceChanger();
-    // updateSliders();
   } else if (audioStartToggle.innerText === "STOP") {
     stopVoiceChanger();
   }
@@ -63,18 +61,20 @@ function startVoiceChanger() {
       console.log("mic open");
       // what to do when the mic is open
       mic.connect(micFFT);
+      // micFFT.connect(phaser);
+      // phaser.connect(meter);
       // connect mic to FX chain
       micFFT.connect(shift);
       shift.connect(dist);
       dist.connect(chebydistortion);
       chebydistortion.connect(crusher);
       crusher.connect(chorus.start());
-      chorus.connect(tremolo.start());
+      chorus.connect(phaser);
+      phaser.connect(tremolo.start());
       tremolo.connect(feedbackDelay);
       feedbackDelay.connect(jcReverb);
       jcReverb.connect(reverb);
-      reverb.connect(freeverb);
-      freeverb.connect(meter);
+      reverb.connect(meter);
       // connect FX to output and destination
       meter.chain(monoOutput, destination);
       // meter.chain(monoLeft, monoRight, destination);
