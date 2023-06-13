@@ -72,6 +72,16 @@ import {
   jcReverbWetDryValue,
   jcReverbWetDrySlider,
 } from "./modules/jcReverbFX.js";
+import {
+  reverb,
+  reverbDecayTimeValue,
+  reverbDecayTimeSlider,
+  reverbPreDelayValue,
+  reverbPreDelaySlider,
+  updateReverbSliders,
+  reverbWetDryValue,
+  reverbWetDrySlider,
+} from "./modules/reverbFX.js";
 
 document.querySelector("h4").addEventListener("click", async () => {
   await Tone.start();
@@ -135,7 +145,8 @@ function startVoiceChanger() {
       chorus.connect(tremolo.start());
       tremolo.connect(feedbackDelay);
       feedbackDelay.connect(jcReverb);
-      jcReverb.connect(meter);
+      jcReverb.connect(reverb);
+      reverb.connect(meter);
       // connect FX to output and destination
       meter.chain(monoOutput, destination);
       // meter.chain(monoLeft, monoRight, destination);

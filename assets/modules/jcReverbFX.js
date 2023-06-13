@@ -13,13 +13,13 @@ const jcReverb = new Tone.JCReverb({
 
 jcReverbSizeSlider.oninput = function () {
   jcReverbSizeValue.innerHTML = this.value;
-  console.log("Slider value: ", jcReverbSizeValue.innerHTML);
+  // console.log("Slider value: ", jcReverbSizeValue.innerHTML);
   updatejcReverbSliders();
 };
 
 jcReverbWetDrySlider.oninput = function () {
   jcReverbWetDryValue.innerHTML = this.value;
-  console.log("Slider value: ", jcReverbWetDryValue.innerHTML);
+  // console.log("Slider value: ", jcReverbWetDryValue.innerHTML);
   updatejcReverbSliders();
 };
 
