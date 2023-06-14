@@ -34,10 +34,10 @@ const destination = Tone.Destination;
 
 let meterInterval = null;
 
-// Toggle audio source on/off
+// Audio permission and toggle on/off
 audioStartToggle.addEventListener("click", async () => {
   await Tone.start();
-
+  // on/off toggle for audio source
   if (audioStartToggle.innerText === "START") {
     startAudioSource();
   } else if (audioStartToggle.innerText === "STOP") {
