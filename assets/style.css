@@ -144,10 +144,6 @@ p {
     text-transform: uppercase;
 }
 
-#pitch-container {
-    background-color: lightcoral;
-}
-
 .shift-range-radio {
     width: 100vu;
     margin-top: 10px;
@@ -195,6 +191,14 @@ label {
     margin: 5px 5px;
     padding: 0;
     text-transform: uppercase;
+}
+
+#pitch-container {
+    background-color: lightcoral;
+}
+
+#auto-wah-container {
+    background-color: whitesmoke;
 }
 
 #distortion-container {

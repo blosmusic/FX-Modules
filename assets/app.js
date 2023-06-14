@@ -1,5 +1,6 @@
 // import FX modules
 import { shift } from "./modules/shifterFX.js";
+import { autoWah } from "./modules/autowahFX.js";
 import { dist } from "./modules/distortionFX.js";
 import { chebydistortion } from "./modules/chebyDistFX.js";
 import { crusher } from "./modules/crusherFX.js";
@@ -61,11 +62,12 @@ function startVoiceChanger() {
       console.log("mic open");
       // what to do when the mic is open
       mic.connect(micFFT);
-      // micFFT.connect(phaser);
-      // phaser.connect(meter);
+      // micFFT.connect(autoWah);
+      // autoWah.connect(meter);
       // connect mic to FX chain
       micFFT.connect(shift);
-      shift.connect(dist);
+      shift.connect(autoWah);
+      autoWah.connect(dist);
       dist.connect(chebydistortion);
       chebydistortion.connect(crusher);
       crusher.connect(chorus.start());

@@ -33,12 +33,6 @@ const phaser = new Tone.Phaser({
   octaves: parseFloat(phaserOctavesSlider.value),
   stages: parseFloat(phaserStagesSlider.value),
   wet: parseFloat(phaserWetDrySlider.value),
-  // Q: 6,
-  // baseFrequency: 500,
-  // frequency: 0.5,
-  // octaves: 3,
-  // stages: 8,
-  // wet: 0.5
 });
 
 
