@@ -1,23 +1,22 @@
 //import audio modules
-import fft from "./modules/fftAnalyser.js";
-import { meter, audioInputLevelMeter } from "./modules/meter.js";
+import fft from "./modules/components/fftAnalyser.js";
+import { meter, audioInputLevelMeter } from "./modules/components/meter.js";
 // import FX modules
-import { shift } from "./modules/shifterFX.js";
-import { autoWah } from "./modules/autowahFX.js";
-import { dist } from "./modules/distortionFX.js";
-import { chebydistortion } from "./modules/chebyDistFX.js";
-import { crusher } from "./modules/crusherFX.js";
-import { chorus } from "./modules/chorusFX.js";
-import { phaser } from "./modules/phaserFX.js";
-import { tremolo } from "./modules/tremoloFX.js";
-import { vibrato } from "./modules/vibratoFX.js";
-import { feedbackDelay } from "./modules/delayFX.js";
-import { pingPong } from "./modules/pingPongDelayFX.js";
-import { jcReverb } from "./modules/jcReverbFX.js";
-import { reverb } from "./modules/reverbFX.js";
+import { shift } from "./modules/FX/shifterFX.js";
+import { autoWah } from "./modules/FX/autowahFX.js";
+import { dist } from "./modules/FX/distortionFX.js";
+import { chebydistortion } from "./modules/FX/chebyDistFX.js";
+import { crusher } from "./modules/FX/crusherFX.js";
+import { chorus } from "./modules/FX/chorusFX.js";
+import { phaser } from "./modules/FX/phaserFX.js";
+import { tremolo } from "./modules/FX/tremoloFX.js";
+import { vibrato } from "./modules/FX/vibratoFX.js";
+import { feedbackDelay } from "./modules/FX/delayFX.js";
+import { pingPong } from "./modules/FX/pingPongDelayFX.js";
+import { jcReverb } from "./modules/FX/jcReverbFX.js";
+import { reverb } from "./modules/FX/reverbFX.js";
 
 // Import DOM elements
-const startButton = document.querySelector("h4");
 const audioStartToggle = document.getElementById("audio-start-toggle");
 const audioSourceIndicator = document.getElementById("audio-source-indication");
 
@@ -35,22 +34,18 @@ const destination = Tone.Destination;
 
 let meterInterval = null;
 
-// Start audio context
-startButton.addEventListener("click", async () => {
-  await Tone.start();
-  startButton.innerText = "Permission Granted";
-});
-
 // Toggle audio source on/off
-audioStartToggle.addEventListener("click", () => {
+audioStartToggle.addEventListener("click", async () => {
+  await Tone.start();
+
   if (audioStartToggle.innerText === "START") {
-    startVoiceChanger();
+    startAudioSource();
   } else if (audioStartToggle.innerText === "STOP") {
-    stopVoiceChanger();
+    stopAudioSource();
   }
 });
 
-function startVoiceChanger() {
+function startAudioSource() {
   audioStartToggle.innerText = "STOP";
   audioSourceIndicator.style.backgroundColor = "red";
   audioSourceIndicator.style.boxShadow = "0 0 0 1.5px red";
@@ -88,11 +83,11 @@ function startVoiceChanger() {
     });
 }
 
-function stopVoiceChanger() {
+function stopAudioSource() {
   console.log("audio source closed");
   audioStartToggle.innerText = "START";
   audioSourceIndicator.style.backgroundColor = "darkred";
   audioSourceIndicator.style.boxShadow = "0 0 0 0 #333";
   audioSource.close();
-  clearInterval(meterInterval);
+  // clearInterval(meterInterval);
 }
