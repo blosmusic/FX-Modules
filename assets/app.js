@@ -1,3 +1,6 @@
+//import audio modules
+import fft from "./modules/fftAnalyser.js";
+import { meter, audioInputLevelMeter } from "./modules/meter.js";
 // import FX modules
 import { shift } from "./modules/shifterFX.js";
 import { autoWah } from "./modules/autowahFX.js";
@@ -13,37 +16,32 @@ import { pingPong } from "./modules/pingPongDelayFX.js";
 import { jcReverb } from "./modules/jcReverbFX.js";
 import { reverb } from "./modules/reverbFX.js";
 
-document.querySelector("h4").addEventListener("click", async () => {
-  await Tone.start();
-  document.querySelector("h4").innerText = "Permission Granted";
-});
+// Import DOM elements
+const startButton = document.querySelector("h4");
+const audioStartToggle = document.getElementById("audio-start-toggle");
+const audioSourceIndicator = document.getElementById("audio-source-indication");
 
-let audioStartToggle = document.getElementById("audio-start-toggle");
-let micIndicator = document.getElementById("mic-indication");
-
-// Create Tone buffer
+// Audio Context
 Tone.context.lookAhead = 0;
 Tone.context.updateInterval = 0.01;
 Tone.context.bufferSize = 128;
 
-// get microphone input
-const mic = new Tone.UserMedia();
-const micFFT = new Tone.FFT(32);
-const meter = new Tone.Meter(0.8);
-let inputLevelValueRead = null;
+// Create audio source
+const audioSource = new Tone.UserMedia();
 const monoSignal = new Tone.Mono();
 const monoLeft = new Tone.Mono({ channelCount: 1 });
 const monoRight = new Tone.Mono({ channelCount: -1 });
 const destination = Tone.Destination;
 
-// read input level - check if mic is open
-function processAudioInputLevel() {
-  inputLevelValueRead = meter.getValue().toFixed(2);
-  // print the incoming mic levels in decibels
-  console.log("The Decibel level is:", inputLevelValueRead, "dB");
-}
+let meterInterval = null;
 
-// toggle mic on/off
+// Start audio context
+startButton.addEventListener("click", async () => {
+  await Tone.start();
+  startButton.innerText = "Permission Granted";
+});
+
+// Toggle audio source on/off
 audioStartToggle.addEventListener("click", () => {
   if (audioStartToggle.innerText === "START") {
     startVoiceChanger();
@@ -54,21 +52,18 @@ audioStartToggle.addEventListener("click", () => {
 
 function startVoiceChanger() {
   audioStartToggle.innerText = "STOP";
-  console.log("mic started");
-  micIndicator.style.backgroundColor = "red";
-  micIndicator.style.boxShadow = "0 0 0 1.5px red";
-  mic
+  audioSourceIndicator.style.backgroundColor = "red";
+  audioSourceIndicator.style.boxShadow = "0 0 0 1.5px red";
+  audioSource
     .open()
     .then(() => {
       // promise resolves when input is available
-      console.log("mic open");
-      // what to do when the mic is open
-      mic.connect(monoSignal);
-      monoSignal.connect(micFFT);
-      // micFFT.connect(pingPong);
-      // pingPong.connect(destination);
+      console.log("audio source open");
+      // make audio source mono
+      audioSource.connect(monoSignal);
+      monoSignal.connect(fft);
       // connect mic to FX chain
-      micFFT.connect(shift);
+      fft.connect(shift);
       shift.connect(autoWah);
       autoWah.connect(dist);
       dist.connect(chebydistortion);
@@ -82,22 +77,22 @@ function startVoiceChanger() {
       pingPong.connect(jcReverb);
       jcReverb.connect(reverb);
       reverb.connect(meter);
-      // connect FX to output and destination
+      // connect audio chain to destination
       meter.connect(destination);
-      // meter.chain(monoLeft, monoRight, destination);
-      // check input levels
-      // setInterval(processAudioInputLevel, 1000);
+      // check audio levels
+      // meterInterval = setInterval(audioInputLevelMeter, 1000);
     })
     .catch((e) => {
-      // promise is rejected when the user doesn't have or allow mic access
-      console.log("mic not open");
+      // promise is rejected when the user doesn't have or allow audio source access
+      console.log("audio source not open");
     });
 }
 
 function stopVoiceChanger() {
+  console.log("audio source closed");
   audioStartToggle.innerText = "START";
-  console.log("mic stopped");
-  micIndicator.style.backgroundColor = "darkred";
-  micIndicator.style.boxShadow = "0 0 0 0 #333";
-  mic.close();
+  audioSourceIndicator.style.backgroundColor = "darkred";
+  audioSourceIndicator.style.boxShadow = "0 0 0 0 #333";
+  audioSource.close();
+  clearInterval(meterInterval);
 }
