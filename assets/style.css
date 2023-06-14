@@ -132,8 +132,8 @@ p {
 }
 
 .fx-section {
-    width: 360px;
-    height: 650px;
+    width: 380px;
+    height: 720px;
     display: inline-block;
     vertical-align: text-top;
     flex-direction: column;
@@ -227,6 +227,10 @@ label {
 
 #delay-container {
     background-color: rosybrown;
+}
+
+#pingpong-container {
+    background-color: pink;
 }
 
 #jc-reverb-container {

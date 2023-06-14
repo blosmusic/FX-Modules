@@ -9,6 +9,7 @@ import { phaser } from "./modules/phaserFX.js";
 import { tremolo } from "./modules/tremoloFX.js";
 import { vibrato } from "./modules/vibratoFX.js";
 import { feedbackDelay } from "./modules/delayFX.js";
+import { pingPong } from "./modules/pingPongDelayFX.js";
 import { jcReverb } from "./modules/jcReverbFX.js";
 import { reverb } from "./modules/reverbFX.js";
 
@@ -30,7 +31,7 @@ const mic = new Tone.UserMedia();
 const micFFT = new Tone.FFT(32);
 const meter = new Tone.Meter(0.8);
 let inputLevelValueRead = null;
-const monoOutput = new Tone.Mono();
+const monoSignal = new Tone.Mono();
 const monoLeft = new Tone.Mono({ channelCount: 1 });
 const monoRight = new Tone.Mono({ channelCount: -1 });
 const destination = Tone.Destination;
@@ -62,9 +63,10 @@ function startVoiceChanger() {
       // promise resolves when input is available
       console.log("mic open");
       // what to do when the mic is open
-      mic.connect(micFFT);
-      // micFFT.connect(vibrato);
-      // vibrato.connect(meter);
+      mic.connect(monoSignal);
+      monoSignal.connect(micFFT);
+      // micFFT.connect(pingPong);
+      // pingPong.connect(destination);
       // connect mic to FX chain
       micFFT.connect(shift);
       shift.connect(autoWah);
@@ -76,11 +78,12 @@ function startVoiceChanger() {
       phaser.connect(tremolo.start());
       tremolo.connect(vibrato);
       vibrato.connect(feedbackDelay);
-      feedbackDelay.connect(jcReverb);
+      feedbackDelay.connect(pingPong);
+      pingPong.connect(jcReverb);
       jcReverb.connect(reverb);
       reverb.connect(meter);
       // connect FX to output and destination
-      meter.chain(monoOutput, destination);
+      meter.connect(destination);
       // meter.chain(monoLeft, monoRight, destination);
       // check input levels
       // setInterval(processAudioInputLevel, 1000);

@@ -20,22 +20,22 @@ const vibrato = new Tone.Vibrato({
 vibratoFrequencySlider.oninput = function () {
   vibratoFrequencyValue.innerHTML = this.value;
   // console.log("Slider value: ", vibratoFrequencyValue.innerHTML);
-  updatevibratoSliders();
+  updateVibratoSliders();
 };
 
 vibratoDepthSlider.oninput = function () {
   vibratoDepthValue.innerHTML = this.value;
   // console.log("Slider value: ", vibratoDepthValue.innerHTML);
-  updatevibratoSliders();
+  updateVibratoSliders();
 };
 
 vibratoWetDrySlider.oninput = function () {
   vibratoWetDryValue.innerHTML = this.value;
   // console.log("Slider value: ", vibratoWetValue.innerHTML);
-  updatevibratoSliders();
+  updateVibratoSliders();
 };
 
-function updatevibratoSliders() {
+function updateVibratoSliders() {
   // console.log("vibrato frequency: ", vibratoFrequencyValue.innerHTML);
   // console.log("vibrato depth: ", vibratoDepthValue.innerHTML);
   // console.log("vibrato wet/dry: ", vibratoWetDryValue.innerHTML);
@@ -54,7 +54,7 @@ export {
   vibrato,
   vibratoFrequencyValue,
   vibratoFrequencySlider,
-  updatevibratoSliders,
+  updateVibratoSliders,
   vibratoDepthValue,
   vibratoDepthSlider,
   vibratoWetDryValue,
