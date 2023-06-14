@@ -7,6 +7,7 @@ import { crusher } from "./modules/crusherFX.js";
 import { chorus } from "./modules/chorusFX.js";
 import { phaser } from "./modules/phaserFX.js";
 import { tremolo } from "./modules/tremoloFX.js";
+import { vibrato } from "./modules/vibratoFX.js";
 import { feedbackDelay } from "./modules/delayFX.js";
 import { jcReverb } from "./modules/jcReverbFX.js";
 import { reverb } from "./modules/reverbFX.js";
@@ -62,8 +63,8 @@ function startVoiceChanger() {
       console.log("mic open");
       // what to do when the mic is open
       mic.connect(micFFT);
-      // micFFT.connect(autoWah);
-      // autoWah.connect(meter);
+      // micFFT.connect(vibrato);
+      // vibrato.connect(meter);
       // connect mic to FX chain
       micFFT.connect(shift);
       shift.connect(autoWah);
@@ -73,7 +74,8 @@ function startVoiceChanger() {
       crusher.connect(chorus.start());
       chorus.connect(phaser);
       phaser.connect(tremolo.start());
-      tremolo.connect(feedbackDelay);
+      tremolo.connect(vibrato);
+      vibrato.connect(feedbackDelay);
       feedbackDelay.connect(jcReverb);
       jcReverb.connect(reverb);
       reverb.connect(meter);

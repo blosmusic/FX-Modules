@@ -220,6 +220,11 @@ label {
 #tremolo-container {
     background-color: purple;
 }
+
+#vibrato-container {
+    background-color: lightgreen;
+}
+
 #delay-container {
     background-color: rosybrown;
 }
