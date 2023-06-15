@@ -254,7 +254,6 @@ span {
 }
 
 .slider {
-    -webkit-appearance: none;
     width: 100%;
     height: 15px;
     border-radius: 15px;
