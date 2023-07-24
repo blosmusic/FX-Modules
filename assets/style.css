@@ -1,0 +1,339 @@
+* {
+    margin: 0 auto;
+}
+
+body {
+    background-color: #262626;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #00ff91;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #00ff91;
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #00ff91;
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #262626;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline;
+    padding-bottom: 20px;
+}
+
+h4 {
+    font-size: 25px;
+    font-weight: 500;
+    color: #00ff91;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+p {
+    font-size: 20px;
+    font-weight: 400;
+    color: #00ff91;
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.fx-description {
+    font-size: 18px;
+    font-weight: 500;
+    color: #262626;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdfdfd;
+    border-radius: 5px solid #333;
+    box-shadow: 0 0 15px 0 #00ff91;
+    padding: 20px;
+
+}
+
+.audio-changer-container {
+    padding: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 15px;
+}
+
+.audio-start-toggle {
+    background-color: #00ff91;
+    border: 3px solid #333;
+    border-radius: 10%;
+    color: #333;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: flex;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.audio-start-toggle:hover {
+    background-color: #333;
+    color: #00ff91;
+    border: 3px solid #00ff91;
+    box-shadow: 0 0 20px 0 #00ff91;
+    font-weight: bolder;
+    transition: .2s;
+}
+
+#audio-source-indication {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #333;
+    background-color: darkred;
+    text-align: center;
+}
+
+.effect-container {
+    display: block-inline;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px 15px;
+}
+
+.fx-section {
+    width: 380px;
+    height: 720px;
+    display: inline-block;
+    vertical-align: text-top;
+    flex-direction: column;
+    border: 5px solid #333;
+    border-radius: 10%;
+    padding: 20px;
+    margin: 20px 10px;
+    text-transform: uppercase;
+}
+
+.shift-range-radio {
+    width: 100vu;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shift-range-radio input {
+    color: #333;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border: 1px solid #333;
+}
+
+input[type="radio"] {
+    appearance: none;
+    background-color: #333;
+    border: 2px solid #333;
+    opacity: 85%;
+}
+
+input[type="radio"]:checked {
+    background-color: red;
+
+}
+
+input[type="radio"]:hover {
+    opacity: 100%;
+    transition: .3s;
+}
+
+label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 5px;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+#pitch-container {
+    background-color: lightcoral;
+}
+
+#auto-wah-container {
+    background-color: whitesmoke;
+}
+
+#distortion-container {
+    background-color: green;
+}
+
+#chebydistortion-container {
+    background-color: violet;
+}
+
+#bitcrusher-container {
+    background-color: grey;
+}
+
+#chorus-container {
+    background-color: greenyellow;
+}
+
+#tremolo-container {
+    background-color: purple;
+}
+
+#vibrato-container {
+    background-color: lightgreen;
+}
+
+#delay-container {
+    background-color: rosybrown;
+}
+
+#pingpong-container {
+    background-color: pink;
+}
+
+#jc-reverb-container {
+    background-color: darkgray;
+}
+
+#reverb-container {
+    background-color: darkslategray;
+}
+
+#phaser-container {
+    background-color: orangered;
+}
+
+
+span {
+    font-size: 22px;
+    font-weight: 800;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.slider {
+    width: 100%;
+    height: 15px;
+    border-radius: 15px;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    background-color: #333;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #00ff91;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #00ff91;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    width: 17px;
+    height: 17px;
+    transition: .3s;
+}
+
+.slider::-moz-range-thumb:hover {
+    width: 17px;
+    height: 17px;
+    transition: .3s;
+}
+
+@media screen and (max-width: 900px) {
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0px
+    }
+
+    .effect-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0px;
+    }
+
+    .audio-changer-container {
+        padding: 20px;
+    }
+    .fx-section {
+        width: 90%;
+        height: 100%;
+        max-width: 380px; 
+        max-height: 720px;
+        display: inline-block;
+        vertical-align: text-top;
+        flex-direction: column;
+        border: 5px solid #333;
+        border-radius: 10%;
+        padding: 20px;
+        margin: 20px 10px;
+        text-transform: uppercase;
+    }
+}

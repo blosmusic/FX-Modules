@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"></script>
+    <title>Audio FX Chain</title>
+</head>
+
+<body>
+    <h1>Audio FX Chain</h1>
+    <div class="app-container">
+        <div class="audio-changer-container">
+            <div class="audio-source-indication" id="audio-source-indication"></div>
+            <div class="button-container" id="button-container">
+                <button class="audio-start-toggle" id="audio-start-toggle">START</button>
+            </div>
+        </div>
+
+        <div class="effect-container" id="effect-container">
+
+            <div class="fx-section" id="pitch-container">
+                <h3>Pitch</h3>
+                <p class="fx-description">Frequency</p>
+                <span id="pitch-level-value"></span>
+                <input class="pitch-level slider" id="pitch-level" type="range" min="0" max="24" value="0"
+                    step="0.1">
+                    <div class="shift-range-radio">
+                        <input type="radio" class="shift-range" name="pitch-mode" id="shift-range" value="2-oct-plus" checked>
+                        <label for="2-oct-plus">+2 Oct</label>
+                        <input type="radio" class="shift-range" name="pitch-mode" id="shift-range" value="1-oct-plus">
+                        <label for="1-oct-plus">+1 Oct</label>
+                        <input type="radio" class="shift-range" name="pitch-mode" id="shift-range" value="1-oct-minus">
+                        <label for="1-oct-minus">-1 Oct</label>
+                        <input type="radio" class="shift-range" name="pitch-mode" id="shift-range" value="2-oct-minus">
+                        <label for="2-oct-minus">-2 Oct</label>
+                    </div>
+            </div>
+
+            <div class="fx-section" id="auto-wah-container">
+                <h3>Auto Wah</h3>
+                <p class="fx-description">Q</p>
+                <span id="auto-wah-q-value"></span>
+                <input class="auto-wah-q slider" id="auto-wah-q" type="range" min="0.1" max="9" value="6"
+                    step="0.01">
+                <p class="fx-description">Base Frequency</p>
+                <span id="auto-wah-base-frequency-value"></span>
+                <input class="auto-wah-base-frequency slider" id="auto-wah-base-frequency" type="range" min="10" max="100" value="50"
+                    step="1">
+                <p class="fx-description">Follower</p>
+                <span id="auto-wah-follower-value"></span>
+                <input class="auto-wah-follower slider" id="auto-wah-follower" type="range" min="0.001" max="0.01" value="0.005"
+                    step="0.001">
+                <p class="fx-description">Gain</p>
+                <span id="auto-wah-gain-value"></span>
+                <input class="auto-wah-gain slider" id="auto-wah-gain" type="range" min="0" max="1" value="0.5"
+                    step="0.1">
+                <p class="fx-description">Octaves</p>
+                <span id="auto-wah-octaves-value"></span>
+                <input class="auto-wah-octaves slider" id="auto-wah-octaves" type="range" min="2" max="7" value="6"
+                    step="1">
+                <p class="fx-description">Sensitivity</p>
+                <span id="auto-wah-sensitivity-value"></span>
+                <input class="auto-wah-sensitivity slider" id="auto-wah-sensitivity" type="range" min="-30" max="-10" value="-25"
+                    step="1">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="auto-wah-wet-dry-value"></span>
+                <input class="auto-wah-wet-dry slider" id="auto-wah-wet-dry" type="range" min="0" max="1" value="1" step="0.01">
+            </div>
+
+            <div class="fx-section" id="distortion-container">
+                <h3>Distortion</h3>
+                <p class="fx-description">Distortion</p>
+                <span id="distortion-level-value"></span>
+                <input class="distortion-level slider" id="distortion-level" type="range" min="0" max="1"
+                    value="0.8" step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="distortion-wet-dry-value"></span>
+                <input class="distortion-wet-dry slider" id="distortion-wet-dry" type="range" min="0" max="1" value="1.0"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="chebydistortion-container">
+                <h3>Cheby Distortion</h3>
+                <p class="fx-description">Distortion</p>
+                <span id="chebydistortion-level-value"></span>
+                <input class="chebydistortion-level slider" id="chebydistortion-level" type="range" min="2" max="100"
+                    value="30" step="1">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="chebydistortion-wet-dry-value"></span>
+                <input class="chebydistortion-wet-dry slider" id="chebydistortion-wet-dry" type="range" min="0" max="1" value="0.3"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="bitcrusher-container">
+                <h3>Bit Crusher</h3>
+                <p class="fx-description">Bit Crusher</p>
+                <span id="bitcrusher-level-value"></span>
+                <input class="bitcrusher-level slider" id="bitcrusher-level" type="range" min="1" max="16"
+                    value="4" step="1">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="bitcrusher-wet-dry-value"></span>
+                <input class="bitcrusher-wet-dry slider" id="bitcrusher-wet-dry" type="range" min="0" max="1" value="1.0"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="chorus-container">
+                <h3>Chorus</h3>
+                <p class="fx-description">Frequency</p>
+                <span id="chorus-frequency-value"></span>
+                <input class="chorus-frequency slider" id="chorus-frequency" type="range" min="0.1" max="10" value="2"
+                    step="0.1">
+                <p class="fx-description">Delay</p>
+                <span id="chorus-delay-value"></span>
+                <input class="chorus-delay slider" id="chorus-delay" type="range" min="0.1" max="50" value="3.5"
+                    step="0.1">
+                <p class="fx-description">Depth</p>
+                <span id="chorus-depth-value"></span>
+                <input class="chorus-depth slider" id="chorus-depth" type="range" min="0" max="1" value="0.3"
+                    step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="chorus-wet-dry-value"></span>
+                <input class="chorus-wet-dry slider" id="chorus-wet-dry" type="range" min="0" max="1" value="0.5"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="phaser-container">
+                <h3>Phaser</h3>
+                <p class="fx-description">Q</p>
+                <span id="phaser-q-value"></span>
+                <input class="phaser-q slider" id="phaser-q" type="range" min="0.1" max="20" value="6"
+                    step="0.01">
+                <p class="fx-description">Base Frequency</p>
+                <span id="phaser-base-frequency-value"></span>
+                <input class="phaser-base-frequency slider" id="phaser-base-frequency" type="range" min="20" max="20000" value="500"
+                    step="1">
+                <p class="fx-description">Frequency</p>
+                <span id="phaser-frequency-value"></span>
+                <input class="phaser-frequency slider" id="phaser-frequency" type="range" min="0.01" max="10" value="0.5"
+                    step="0.01">
+                <p class="fx-description">Octaves</p>
+                <span id="phaser-octaves-value"></span>
+                <input class="phaser-octaves slider" id="phaser-octaves" type="range" min="0" max="10" value="3"
+                    step="1">
+                <p class="fx-description">Stages</p>
+                <span id="phaser-stages-value"></span>
+                <input class="phaser-stages slider" id="phaser-stages" type="range" min="2" max="24" value="8"
+                    step="1">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="phaser-wet-dry-value"></span>
+                <input class="phaser-wet-dry slider" id="phaser-wet-dry" type="range" min="0" max="1" value="0.5" step="0.01">
+            </div>
+
+            <div class="fx-section" id="tremolo-container">
+                <h3>Tremolo</h3>
+                <p class="fx-description">Frequency</p>
+                <span id="tremolo-frequency-value"></span>
+                <input class="tremolo-frequency slider" id="tremolo-frequency" type="range" min="1" max="10" value="3"
+                    step="0.1">
+                <p class="fx-description">Depth</p>
+                <span id="tremolo-depth-value"></span>
+                <input class="tremolo-depth slider" id="tremolo-depth" type="range" min="0" max="1" value="0.75"
+                    step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="tremolo-wet-dry-value"></span>
+                <input class="tremolo-wet-dry slider" id="tremolo-wet-dry" type="range" min="0" max="1" value="0.5"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="vibrato-container">
+                <h3>Vibrato</h3>
+                <p class="fx-description">Frequency</p>
+                <span id="vibrato-frequency-value"></span>
+                <input class="vibrato-frequency slider" id="vibrato-frequency" type="range" min="0.1" max="10" value="5"
+                    step="0.1">
+                <p class="fx-description">Depth</p>
+                <span id="vibrato-depth-value"></span>
+                <input class="vibrato-depth slider" id="vibrato-depth" type="range" min="0" max="1" value="0.5"
+                    step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="vibrato-wet-dry-value"></span>
+                <input class="vibrato-wet-dry slider" id="vibrato-wet-dry" type="range" min="0" max="1" value="0.5"
+                    step="0.01">
+            </div>
+
+            <div class="fx-section" id="delay-container">
+                <h3>Delay</h3>
+                <p class="fx-description">Time</p>
+                <span id="delay-time-value"></span>
+                <input class="delay-time slider" id="delay-time" type="range" min="0.01" max="2" value="0.15" step="0.01">
+                <p class="fx-description">Feedback</p>
+                <span id="delay-feedback-value"></span>
+                <input class="delay-feedback slider" id="delay-feedback" type="range" min="0.01" max="0.99" value="0.8" step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="delay-wet-dry-value"></span>
+                <input class="delay-wet-dry slider" id="delay-wet-dry" type="range" min="0" max="1" value="0.5" step="0.01">
+            </div>
+
+            <div class="fx-section" id="pingpong-container">
+                <h3>Ping Pong Delay</h3>
+                <p class="fx-description">Time</p>
+                <span id="pingpong-time-value"></span>
+                <input class="pingpong-time slider" id="pingpong-time" type="range" min="0.01" max="2" value="1.5" step="0.01">
+                <p class="fx-description">Feedback</p>
+                <span id="pingpong-feedback-value"></span>
+                <input class="pingpong-feedback slider" id="pingpong-feedback" type="range" min="0.01" max="0.99" value="0.5" step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="pingpong-wet-dry-value"></span>
+                <input class="pingpong-wet-dry slider" id="pingpong-wet-dry" type="range" min="0" max="1" value="0.5" step="0.01">
+            </div>
+
+            <div class="fx-section" id="jc-reverb-container">
+                <h3>JC Reverb</h3>
+                <p class="fx-description">Room Size</p>
+                <span id="jc-reverb-size-value"></span>
+                <input class="jc-reverb-size slider" id="jc-reverb-size" type="range" min="0.1" max="0.9" value="0.2"
+                    step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="jc-reverb-wet-dry-value"></span>
+                <input class="jc-reverb-wet-dry slider" id="jc-reverb-wet-dry" type="range" min="0" max="1" value="0.4" step="0.01">
+            </div>
+
+            <div class="fx-section" id="reverb-container">
+                <h3>Reverb</h3>
+                <p class="fx-description">Decay</p>
+                <span id="reverb-decay-value"></span>
+                <input class="reverb-decay slider" id="reverb-decay" type="range" min="0.1" max="10" value="2"
+                    step="0.01">
+                <p class="fx-description">Pre-Delay</p>
+                <span id="reverb-predelay-value"></span>
+                <input class="reverb-predelay slider" id="reverb-predelay" type="range" min="0.1" max="80" value="10"
+                    step="0.01">
+                <p class="fx-description">Wet/Dry</p>
+                <span id="reverb-wet-dry-value"></span>
+                <input class="reverb-wet-dry slider" id="reverb-wet-dry" type="range" min="0" max="1" value="0.4" step="0.01">
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="module" src="./assets/app.js"></script>
+
+</html>
